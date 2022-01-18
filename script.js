@@ -43,7 +43,6 @@ function playRound(humanPick, computerPick) {
 
 function game(humanPick) {
 
-
     if (humanCount < 5 && computerCount < 5) {
         const winner = playRound(humanPick, computerPlay());
 
@@ -60,27 +59,35 @@ function game(humanPick) {
 
     else {
 
-        let winner;
 
-        if (humanCount == 5) winner = "You win. Match has ended.";
-        else winner = "You lose! Match has ended.";
-        const result = document.querySelector('.result');
+        if (!beenHere) {
+            let winner;
 
-        const content = document.createElement('div');
+            if (humanCount == 5) winner = "You win. Match has ended.";
+            else winner = "You lose! Match has ended.";
 
-        content.textContent = winner;
+            const result = document.querySelector('.result');
 
-        result.appendChild(content);
+            const content = document.createElement('div');
+
+            content.textContent = winner;
+
+            result.appendChild(content);
+
+            beenHere = true;
+        }
     }
     
 }
 
 let humanPick;
 let computerCount = 0, humanCount = 0;
+let beenHere = false;
 
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissor = document.getElementById("scissor");
+const restart = document.getElementById("restart");
 
         rock.addEventListener("click", function() {
             humanPick = "rock";
@@ -93,4 +100,8 @@ const scissor = document.getElementById("scissor");
         scissor.addEventListener("click", function() {
             humanPick = "scissor";
             game(humanPick);
+        });
+
+        restart.addEventListener("click", function() {
+            location.reload();
         });

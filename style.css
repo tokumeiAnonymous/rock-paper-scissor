@@ -1,0 +1,18 @@
+button {
+    text-align: center;
+    width: 100px;
+    border: 1px solid black;
+    background: skyblue;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px;
+    color: yellow;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.result {
+    width: 300px;
+    height: auto;
+    border: 1px solid black;
+}

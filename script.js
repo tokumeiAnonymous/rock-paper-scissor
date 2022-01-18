@@ -30,22 +30,67 @@ function playRound(humanPick, computerPick) {
     }
 
     if (result == true) {
+
+        humanCount++;
         return "You win! " + humanPick + " beats " + computerPick + ".";
     }
     else if (result == false) {
+        computerCount++;
         return "You lose! " + humanPick + " loses to " + computerPick + ".";
     }
 
 }
 
-function game() {
+function game(humanPick) {
 
-    
-    for (let i = 0; i < 5; i++){
-        let humanPick = prompt("Choose between Rock-Paper-Scissor");
-        console.log(playRound(humanPick, computerPlay()));
+
+    if (humanCount < 5 && computerCount < 5) {
+        const winner = playRound(humanPick, computerPlay());
+
+        const result = document.querySelector('.result');
+
+        const content = document.createElement('div');
+
+        content.classList.add('content');
+
+        content.textContent = winner;
+
+        result.appendChild(content);
     }
+
+    else {
+
+        let winner;
+
+        if (humanCount == 5) winner = "You win. Match has ended.";
+        else winner = "You lose! Match has ended.";
+        const result = document.querySelector('.result');
+
+        const content = document.createElement('div');
+
+        content.textContent = winner;
+
+        result.appendChild(content);
+    }
+    
 }
 
+let humanPick;
+let computerCount = 0, humanCount = 0;
 
-game();
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissor = document.getElementById("scissor");
+
+        rock.addEventListener("click", function() {
+            humanPick = "rock";
+            game(humanPick);
+        });
+        paper.addEventListener("click", function() {
+            humanPick = "paper";
+            game(humanPick);
+        });
+        scissor.addEventListener("click", function() {
+            humanPick = "scissor";
+            game(humanPick);
+        });

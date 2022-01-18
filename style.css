@@ -1,3 +1,8 @@
+
+.container {
+    display: flex;
+}
+
 button {
     text-align: center;
     width: 100px;

@@ -63,7 +63,7 @@ function game(humanPick) {
         if (!beenHere) {
             let winner;
 
-            if (humanCount == 5) winner = "You win. Match has ended.";
+            if (humanCount == 5) winner = "You won. Match has ended.";
             else winner = "You lose! Match has ended.";
 
             const result = document.querySelector('.result');

@@ -1,9 +1,18 @@
 function computerPlay() {
     let x = Math.floor(Math.random() * 3) + 1;
 
-    if (x == 1) return "ROCK";
-    if (x == 2) return "PAPER";
-    if (x == 3) return "SCISSOR";
+    if (x == 1) {
+        addImage("COMPUTER", "ROCK");
+        return "ROCK";
+    }
+    if (x == 2) {
+        addImage("COMPUTER", "PAPER");
+        return "PAPER";
+    }
+    if (x == 3) {
+        addImage("COMPUTER", "SCISSOR"); 
+        return "SCISSOR";
+    }
 }
 
 
@@ -12,9 +21,11 @@ function playRound(humanPick, computerPick) {
     let result = false;
     humanPick = humanPick.toUpperCase();
 
+    addImage("HUMAN", humanPick);
+
     if (humanPick == computerPick) return "It's A Draw";
 
-    else if (humanPick == "ROCK") {
+    else if (humanPick == "ROCK") { 
         if (computerPick == "SCISSOR") result = true;
         else if (computerPick == "PAPER") result = false;
     }
@@ -44,7 +55,10 @@ function playRound(humanPick, computerPick) {
 function game(humanPick) {
 
     if (humanCount < 5 && computerCount < 5) {
-        const winner = playRound(humanPick, computerPlay());
+
+        const computerPick = computerPlay();
+
+        const winner = playRound(humanPick, computerPick);
 
         const result = document.querySelector('.result');
 
@@ -80,9 +94,35 @@ function game(humanPick) {
     
 }
 
+function addImage(player, choice) {
+    
+    let playerImg;
+
+    if (player == "HUMAN") {
+        playerImg = document.querySelector('#human-choice');
+    } else {
+        playerImg = document.querySelector('#computer-choice');
+    }
+
+    if (choice == "ROCK"){
+        playerImg.innerHTML = `<img src="images/rock.png">`;
+    } else if (choice == "PAPER") {
+        playerImg.innerHTML = `<img src="images/paper.png">`;
+    } else if (choice == "SCISSOR") {
+        playerImg.innerHTML = `<img src="images/scissor.png">`;
+    }
+}
+
 let humanPick;
 let computerCount = 0, humanCount = 0;
 let beenHere = false;
+
+
+const humanChoice = document.getElementById("human-choice");
+const computerChoice = document.getElementById("computer-choice");
+
+addImage("HUMAN","ROCK");
+addImage("COMPUTER", "ROCK");
 
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
